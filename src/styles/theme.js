@@ -5,7 +5,8 @@ module.exports = {
     darkGreyCyan: "hsl(180, 8%, 52%)",
     lightGreyCyanFilter: "hsl(180, 31%, 95%)",
     lightGreyCyanBg: "hsl(180, 52%, 96%)",
-    white: "#fff"
+    white: "#fff",
+    black: "#000"
   },
 
   breakpoints: {
