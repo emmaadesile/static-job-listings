@@ -8,6 +8,10 @@ const StyledHeader = styled.header`
   background-color: ${colors.darkGreyCyan};
   background-image: url(${bgHeader});
   background-size: cover;
+
+  @media screen and (max-width: 375px) {
+    background-image: url() "../static/images/bg-header-mobile.svg";
+  }
 `;
 
 const Header = () => <StyledHeader />;

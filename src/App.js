@@ -10,9 +10,28 @@ const StyledLayout = styled.main`
   margin: 0 auto;
   margin-top: 2em;
   padding: 30px 80px;
+  padding-bottom: 200px;
+
+  @media screen and (max-width: 375px) {
+    padding: 5px 20px;
+  }
+
+  @media screen and (max-width: 900px) {
+    padding: 20px;
+  }
 `;
 
 function App() {
+  const [filter, setfilter] = React.useState([]);
+  const filterRef = React.useRef("");
+
+  const handleFilterClick = () => {
+    const filterArr = [];
+    filterArr.push(filterRef.current);
+    setfilter(filterArr);
+    console.log(filter);
+  };
+
   return (
     <div>
       <Header />
@@ -26,14 +45,15 @@ function App() {
             isNew={job.new}
             isFeatured={job.featured}
             postedAt={job.postedAt}
-            langs={job.languages}
+            filters={job.languages}
             contract={job.contract}
             location={job.location}
             level={job.level}
             role={job.role}
+            handleFilterClick={handleFilterClick}
+            filterRef={filterRef}
           />
         ))}
-        <Card />
       </StyledLayout>
     </div>
   );
