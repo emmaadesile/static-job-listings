@@ -3,16 +3,21 @@ import styled from "styled-components";
 import jobs from "./data/data";
 import Header from "./components/header";
 import Card from "./components/card";
-import { breakpoints, colors } from "./styles/theme";
+import Filter from "./components/filter";
+import { breakpoints } from "./styles/theme";
 
 const StyledLayout = styled.main`
   max-width: ${breakpoints.desktop};
   margin: 0 auto;
-  margin-top: 2em;
-  padding: 30px 80px;
-  padding-bottom: 200px;
+  padding: 30px 80px 30px;
+  padding-bottom: 150px;
+  position: relative;
 
-  @media screen and (max-width: 375px) {
+  &:first-child {
+    margin: 0;
+  }
+
+  @media screen and (max-width: ${breakpoints.mobile}) {
     padding: 5px 20px;
   }
 
@@ -22,20 +27,42 @@ const StyledLayout = styled.main`
 `;
 
 function App() {
-  const [filter, setfilter] = React.useState([]);
-  const filterRef = React.useRef("");
+  const [filters, setFilters] = React.useState([]);
+  const removeFilterRef = React.useRef([]);
 
-  const handleFilterClick = () => {
-    const filterArr = [];
-    filterArr.push(filterRef.current);
-    setfilter(filterArr);
-    console.log(filter);
+  // remove a filter
+  const handleRemoveFilter = (e) => {
+    const currentFilter =
+      removeFilterRef.current.parentElement.firstElementChild.innerText;
+    setFilters(filters.filter((item) => item !== currentFilter));
+  };
+
+  // clear all filters
+  const handleClearFilter = () => {
+    setFilters([]);
+  };
+
+  // add a filter
+  const handleFilterClick = (e) => {
+    const item = e.target.innerText;
+    if (filters.includes(item)) return;
+    else {
+      setFilters(filters.concat(item));
+    }
   };
 
   return (
     <div>
       <Header />
       <StyledLayout>
+        {filters.length > 0 && (
+          <Filter
+            filters={filters}
+            handleRemoveFilter={handleRemoveFilter}
+            handleClearFilter={handleClearFilter}
+            removeFilterRef={removeFilterRef}
+          />
+        )}
         {jobs.map((job) => (
           <Card
             key={job.id}
@@ -45,13 +72,14 @@ function App() {
             isNew={job.new}
             isFeatured={job.featured}
             postedAt={job.postedAt}
-            filters={job.languages}
+            langs={job.languages}
             contract={job.contract}
             location={job.location}
             level={job.level}
+            tools={job.tools}
             role={job.role}
+            filters={filters}
             handleFilterClick={handleFilterClick}
-            filterRef={filterRef}
           />
         ))}
       </StyledLayout>

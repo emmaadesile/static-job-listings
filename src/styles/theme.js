@@ -14,4 +14,8 @@ module.exports = {
     desktop: "1440px",
     mobile: "375px",
   },
+
+  boxShadow: "0px 5px 15px 5px rgba(91, 164, 164, 0.2)",
+  borderRadius: "5px",
+  borderLeft: "4px solid hsl(180, 29%, 50%)"
 };

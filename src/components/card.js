@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { colors } from "../styles/theme";
+import { colors, boxShadow, borderRadius, borderLeft } from "../styles/theme";
 
 const StyledCard = styled.div`
   padding: 35px;
@@ -8,11 +8,10 @@ const StyledCard = styled.div`
   grid-template-columns: 1fr 1fr;
   align-items: center;
   background: ${colors.white};
-  box-shadow: 0px 5px 15px 2px rgba(91, 164, 164, 0.2);
-  border-radius: 5px;
-  margin-top: 25px;
-  border-left: ${(props) =>
-    props.isFeatured ? "4px solid hsl(180, 29%, 50%)" : "none"};
+  box-shadow: ${boxShadow};
+  border-radius: ${borderRadius};
+  margin-top: 30px;
+  border-left: ${(props) => (props.isFeatured ? borderLeft : "none")};
   position: relative;
 
   .position {
@@ -77,7 +76,7 @@ const StyledCard = styled.div`
 
   .filters {
     justify-self: end;
-    font-size: 0.75em;
+    font-size: 13px;
     color: ${colors.primary};
     font-weight: 700;
     display: flex;
@@ -91,6 +90,12 @@ const StyledCard = styled.div`
       margin-left: 15px;
       margin-top: 15px;
       cursor: pointer;
+      transition: all 300ms ease-in-out;
+
+      &:hover {
+        background: ${colors.primary};
+        color: ${colors.white};
+      }
     }
   }
 
@@ -136,10 +141,6 @@ const StyledCard = styled.div`
   }
 `;
 
-const Logo = styled.div`
-  background-image: url("../static/images/photosnap.svg");
-`;
-
 const Card = ({
   position,
   company,
@@ -147,14 +148,17 @@ const Card = ({
   isNew,
   isFeatured,
   postedAt,
-  filters = ["HTML", "CSS", "JavaScript"],
+  langs = "",
   contract,
   location,
   level,
   role,
+  tools = "",
+  filters,
   handleFilterClick,
-  filterRef,
 }) => {
+  const allFilters = [role, level, ...tools].concat(langs);
+
   return (
     <StyledCard isFeatured={isFeatured}>
       <div className="position">
@@ -178,16 +182,14 @@ const Card = ({
         </div>
       </div>
       <div className="filters">
-        {filters.concat([role, level]).map((filter, index) => (
-          <span
-            className="filter"
-            key={index}
-            ref={filterRef}
-            onClick={handleFilterClick}
-          >
-            {filter}
-          </span>
-        ))}
+        {allFilters.map(
+          (filter, index) =>
+            filter !== "" && (
+              <span key={index} className="filter" onClick={handleFilterClick}>
+                {filter}
+              </span>
+            )
+        )}
       </div>
     </StyledCard>
   );
