@@ -164,7 +164,7 @@ const Card = ({
       <div className="position">
         <img
           className="logo"
-          src={require("../static/images/photosnap.svg")}
+          src={logo}
           alt="logo"
         />
         <div className="position-info">

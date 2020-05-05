@@ -51,6 +51,12 @@ function App() {
     }
   };
 
+  const filteredJobs = jobs.map((job) => {
+    return filters.filter(
+      (filter) => filter === job.role || filter === job.level
+    );
+  });
+
   return (
     <div>
       <Header />

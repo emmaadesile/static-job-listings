@@ -2,7 +2,7 @@ module.exports = [
   {
     id: 1,
     company: "Photosnap",
-    logo: "../static/images/photosnap.svg",
+    logo: require("../static/images/photosnap.svg"),
     new: true,
     featured: true,
     position: "Senior Frontend Developer",
@@ -16,7 +16,7 @@ module.exports = [
   {
     id: 2,
     company: "Manage",
-    logo: "../static/images/manage.svg",
+    logo: require("../static/images/manage.svg"),
     new: true,
     featured: true,
     position: "Fullstack Developer",
@@ -31,7 +31,7 @@ module.exports = [
   {
     id: 3,
     company: "Account",
-    logo: "../static/images/account.svg",
+    logo: require("../static/images/account.svg"),
     new: true,
     featured: false,
     position: "Junior Frontend Developer",
@@ -46,7 +46,7 @@ module.exports = [
   {
     id: 4,
     company: "MyHome",
-    logo: "../static/images/myhome.svg",
+    logo: require("../static/images/myhome.svg"),
     new: false,
     featured: false,
     position: "Junior Frontend Developer",
@@ -60,7 +60,7 @@ module.exports = [
   {
     id: 5,
     company: "Loop Studios",
-    logo: "../static/images/loop-studios.svg",
+    logo: require("../static/images/loop-studios.svg"),
     new: false,
     featured: false,
     position: "Software Engineer",
@@ -75,7 +75,7 @@ module.exports = [
   {
     id: 6,
     company: "FaceIt",
-    logo: "../static/images/faceit.svg",
+    logo: require("../static/images/faceit.svg"),
     new: false,
     featured: false,
     position: "Junior Backend Developer",
@@ -89,7 +89,7 @@ module.exports = [
   {
     id: 7,
     company: "Shortly",
-    logo: "../static/images/shortly.svg",
+    logo: require("../static/images/shortly.svg"),
     new: false,
     featured: false,
     position: "Junior Developer",
@@ -104,7 +104,7 @@ module.exports = [
   {
     id: 8,
     company: "Insure",
-    logo: "../static/images/insure.svg",
+    logo: require("../static/images/insure.svg"),
     new: false,
     featured: false,
     position: "Junior Frontend Developer",
@@ -119,7 +119,7 @@ module.exports = [
   {
     id: 9,
     company: "Eyecam Co.",
-    logo: "../static/images/eyecam-co.svg",
+    logo: require("../static/images/eyecam-co.svg"),
     new: false,
     featured: false,
     position: "Full Stack Engineer",
@@ -134,7 +134,7 @@ module.exports = [
   {
     id: 10,
     company: "The Air Filter Company",
-    logo: "../static/images/the-air-filter-company.svg",
+    logo: require("../static/images/the-air-filter-company.svg"),
     new: false,
     featured: false,
     position: "Front-end Dev",
