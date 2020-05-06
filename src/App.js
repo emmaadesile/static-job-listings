@@ -1,30 +1,9 @@
 import React from "react";
-import styled from "styled-components";
 import jobs from "./data/data";
-import Header from "./components/header";
-import Card from "./components/card";
-import Filter from "./components/filter";
-import { breakpoints } from "./styles/theme";
-
-const StyledLayout = styled.main`
-  max-width: ${breakpoints.desktop};
-  margin: 0 auto;
-  padding: 30px 80px 30px;
-  padding-bottom: 150px;
-  position: relative;
-
-  &:first-child {
-    margin: 0;
-  }
-
-  @media screen and (max-width: ${breakpoints.mobile}) {
-    padding: 5px 20px;
-  }
-
-  @media screen and (max-width: 900px) {
-    padding: 20px;
-  }
-`;
+import Header from "./components/Header";
+import JobCard from "./components/JobCard";
+import Filter from "./components/JobFilter";
+import StyledLayout from "./AppStyles";
 
 function App() {
   const [filters, setFilters] = React.useState([]);
@@ -34,6 +13,7 @@ function App() {
   React.useEffect(() => {
     // this shows jobs that match the selected filters
     const filteredJobs = (jobs) => {
+      // eslint-disable-next-line array-callback-return
       return jobs.filter((job) => {
         for (let i = 0; i < filters.length; i++) {
           const filterItem = filters[i];
@@ -90,7 +70,7 @@ function App() {
           />
         )}
         {jobListings.map((job) => (
-          <Card
+          <JobCard
             key={job.id}
             position={job.position}
             logo={job.logo}
