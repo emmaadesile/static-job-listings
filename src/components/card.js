@@ -68,6 +68,7 @@ const StyledCard = styled.div`
       }
 
       .position-title {
+        font-size: 17px;
         font-weight: 700;
         color: ${colors.black};
       }
