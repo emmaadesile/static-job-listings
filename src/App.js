@@ -28,7 +28,33 @@ const StyledLayout = styled.main`
 
 function App() {
   const [filters, setFilters] = React.useState([]);
-  const removeFilterRef = React.useRef([]);
+  const [jobListings, setJobListings] = React.useState(jobs);
+  const removeFilterRef = React.useRef();
+
+  React.useEffect(() => {
+    // this shows jobs that match the selected filters
+    const filteredJobs = (jobs) => {
+      return jobs.filter((job) => {
+        for (let i = 0; i < filters.length; i++) {
+          const filterItem = filters[i];
+          if (
+            job.role === filterItem ||
+            job.level === filterItem ||
+            (job.languages && job.languages.includes(filterItem)) ||
+            (job.tools && job.tools.includes(filterItem))
+          ) {
+            return job;
+          }
+        }
+      });
+    };
+
+    if (filters.length > 0) {
+      setJobListings(filteredJobs(jobs));
+    } else {
+      setJobListings(jobs);
+    }
+  }, [filters]);
 
   // remove a filter
   const handleRemoveFilter = (e) => {
@@ -51,12 +77,6 @@ function App() {
     }
   };
 
-  const filteredJobs = jobs.map((job) => {
-    return filters.filter(
-      (filter) => filter === job.role || filter === job.level
-    );
-  });
-
   return (
     <div>
       <Header />
@@ -69,7 +89,7 @@ function App() {
             removeFilterRef={removeFilterRef}
           />
         )}
-        {jobs.map((job) => (
+        {jobListings.map((job) => (
           <Card
             key={job.id}
             position={job.position}
